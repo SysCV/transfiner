@@ -1,8 +1,6 @@
 # Mask Transfiner
 Mask Transfiner for High-Quality Instance Segmentation [Mask Transfiner, CVPR 2022]
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 This is the official pytorch implementation of [Transfiner](https://arxiv.org/abs/2111.13673) built on the open-source detectron2.
 
 > [**Mask Transfiner for High-Quality Instance Segmentation**](https://arxiv.org/abs/2111.13673)           
