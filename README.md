@@ -5,13 +5,13 @@ This is the official pytorch implementation of [Transfiner](https://arxiv.org/ab
 
 > [**Mask Transfiner for High-Quality Instance Segmentation**](https://arxiv.org/abs/2111.13673)           
 > Lei Ke, Martin Danelljan, Xia Li, Yu-Wing Tai, Chi-Keung Tang, Fisher Yu  
-> CVPR 2022
+> CVPR, 2022
 
 Highlights
 -----------------
 - **Transfiner:** High-quality instance segmentation with state-of-the-art performance and extreme details.
-- **Novelty:** An efficient transformer targeting for high-resolution instance masks output based on the quadtree structure.
-- **Efficacy:** Large mask and boundary AP improvements on three large benchmakrs, including COCO, Cityscapes and BDD100k. 
+- **Novelty:** An efficient transformer targeting for high-resolution instance masks predictions based on the quadtree structure.
+- **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmakrs, including COCO, Cityscapes and BDD100k. 
 - **Simple:** Small additional computation burden and easy to use.
 
 Visualization of the High-quality Mask Predictions
