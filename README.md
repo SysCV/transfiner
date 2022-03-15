@@ -33,6 +33,10 @@ Qualitative instance segmentation results of our BCNet, using ResNet-101-FPN and
 </tr>
 </table>
 
+## Prototypical Cross-Attention Networks (PCAN)
+<img src="figures/transfiner-banner.png" width="800">
+
+
 Results on COCO test-dev
 ------------
 (Check Table 8 of the paper for full results, all methods are trained on COCO train2017)
