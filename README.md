@@ -160,6 +160,6 @@ If you find Mask Transfiner useful in your research or refer to the provided bas
     author={Ke, Lei and Danelljan, Martin and Li, Xia and Tai, Yu-Wing and Tang, Chi-Keung and Yu, Fisher},
     title={Mask Transfiner for High-Quality Instance Segmentation},
     booktitle = {CVPR},
-    year = {2021}
+    year = {2022}
 }  
 ```
