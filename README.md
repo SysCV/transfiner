@@ -156,7 +156,7 @@ Citation
 ---------------
 If you find Mask Transfiner useful in your research or refer to the provided baseline results, please star :star: this repository and consider citing :pencil::
 ```
-@inproceedings{ke2021bcnet,
+@inproceedings{transfiner,
     author={Ke, Lei and Danelljan, Martin and Li, Xia and Tai, Yu-Wing and Tang, Chi-Keung and Yu, Fisher},
     title={Mask Transfiner for High-Quality Instance Segmentation},
     booktitle = {CVPR},
