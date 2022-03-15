@@ -33,7 +33,7 @@ Qualitative instance segmentation results of our BCNet, using ResNet-101-FPN and
 </tr>
 </table>
 
-## Prototypical Cross-Attention Networks (PCAN)
+## Mask Transfiner with Quadtree Transformer
 <img src="figures/transfiner-banner.png" width="800">
 
 
