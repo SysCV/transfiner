@@ -39,7 +39,7 @@ Qualitative instance segmentation results of our BCNet, using ResNet-101-FPN and
 
 Results on COCO test-dev
 ------------
-(Check Table 8 of the paper for full results, all methods are trained on COCO train2017)
+(Check Table 9 of the paper for full results, all methods are trained on COCO train2017)
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
