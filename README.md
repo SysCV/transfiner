@@ -41,31 +41,27 @@ Results on COCO test-dev
 ------------
 (Check Table 8 of the paper for full results, all methods are trained on COCO train2017)
 
-Detector(Two-stage) | Backbone  | Method | mAP(mask) |
-|--------|----------|--------|-----------|
-Faster R-CNN| Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
-Faster R-CNN| Res-R50-FPN | PANet (CVPR'18) | 36.6 |
-Faster R-CNN| Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
-Faster R-CNN| Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
-**Faster R-CNN**| **Res-R50-FPN** | **BCNet (CVPR'21)** | [**38.4**](scores/stdout_r50_frcnn.txt) | 
-Faster R-CNN| Res-R101-FPN | Mask R-CNN (ICCV'17) | 36.1 | 
-Faster R-CNN| Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
-Faster R-CNN| Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
-**Box-free** | Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
-**Faster R-CNN**|**Res-R101-FPN** | **BCNet (CVPR'21)** | [**39.8**](scores/stdout_frcnn.txt)|
-
-Detector(One-stage) | Backbone | Method | mAP(mask) |
-|--------|----------|--------|-----------|
-FCOS| Res-R101-FPN | BlendMask (CVPR'20) | 38.4 | 
-FCOS| Res-R101-FPN | CenterMask (CVPR'20) | 38.3 | 
-FCOS| Res-R101-FPN | SipMask (ECCV'20) | 37.8 |
-FCOS| Res-R101-FPN | CondInst (ECCV'20) | 39.1 |
-**FCOS**| Res-R101-FPN | **BCNet (CVPR'21)**| [**39.6**](scores/stdout_fcos.txt), [Pretrained Model](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/EfiDFLLEawFJpruwuOl3h3ABBjAKysTf0qJQU80iaKbqYg?e=igzC51), [Submission File](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/EVgMSMFwOmVDjAIB3LFusAMBTyTY-N_6qWbAWEBq_PK9xQ?e=5Lrmv7)|
-FCOS|Res-X101 FPN| BCNet (CVPR'21) | [41.2](scores/stdout_fcos_x101.txt) |
+| Backbone  | Method | mAP(mask) |
+|----------|--------|-----------|
+Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
+Res-R50-FPN | PANet (CVPR'18) | 36.6 |
+Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
+Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
+Res-R50-FPN | BCNet (CVPR'21) | [**38.4**](scores/stdout_r50_frcnn.txt) | 
+**Res-R50-FPN** | **Transfiner (CVPR'22)**  | 39.4 |
+**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5 |
+Res-R101-FPN | Mask R-CNN (ICCV'17) | 36.1 | 
+Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
+Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
+Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
+Res-R101-FPN | BCNet (CVPR'21) | [**39.8**](scores/stdout_frcnn.txt)|
+**Res-R101-FPN** | **Transfiner (CVPR'22)** | 40.7 | 
+**Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | 42.2 | 
 
 Introduction
 -----------------
-Segmenting highly-overlapping objects is challenging, because typically no distinction is made between real object contours and occlusion boundaries. Unlike previous two-stage instance segmentation methods, **BCNet** models image formation as composition of two overlapping image layers, where the top GCN layer detects the occluding objects (occluder) and the bottom GCN layer infers partially occluded instance (occludee). **The explicit modeling of occlusion relationship with bilayer structure naturally decouples the boundaries of both the occluding and occluded instances, and considers the interaction between them during mask regression.** We validate the efficacy of bilayer decoupling on both one-stage and two-stage object detectors with different backbones and network layer choices. The network of BCNet is as follows:
+Two-stage and query-based instance segmentation methods have achieved remarkable results. However, their segmented masks are still very coarse. In this paper, we present Mask Transfiner for high-quality and efficient instance segmentation. Instead of operating on regular dense tensors, our Mask Transfiner decomposes and represents the image regions as a quadtree. Our transformer-based approach only processes detected error-prone tree nodes and self-corrects their errors in parallel. While these sparse pixels only constitute a small proportion of the total number, they are critical to the final mask quality. This allows Mask Transfiner to predict highly accurate instance masks, at a low computational cost. Extensive experiments demonstrate that Mask Transfiner outperforms current instance segmentation methods on three popular benchmarks, significantly improving both two-stage and query-based frameworks by a large margin of +3.0 mask AP on COCO and BDD100K, and +6.6 boundary AP on Cityscapes. 
+
 <center>
 <table>
     <tr>
