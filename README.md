@@ -14,7 +14,7 @@ Highlights
 - **Efficacy:** Large mask and boundary AP improvements on three large benchmakrs, including COCO, Cityscapes and BDD100k. 
 - **Simple:** Small additional computation burden and easy to use.
 
-Visualization of Occluded Objects
+Visualization of the High-quality Mask Predictions
 -----------------
 <table>
     <tr>
