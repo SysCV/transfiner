@@ -18,7 +18,7 @@ Visualization of the High-quality Mask Predictions
 -----------------
 <table>
     <tr>
-        <td><center><img src="figures/mask_transfiner.gif" height="400"></td>
+        <td><center><img src="figures/mask_transfiner.gif" height="450"></td>
 </tr>
 </table>
 <!-- <table>
