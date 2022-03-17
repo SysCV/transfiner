@@ -18,20 +18,17 @@ Visualization of the High-quality Mask Predictions
 -----------------
 <table>
     <tr>
-        <td><center><img src="figures/mask_transfiner.gif" height="400">
-            
-Qualitative instance segmentation results of our BCNet, using ResNet-101-FPN and Faster R-CNN detector. The bottom row visualizes squared heatmap of **object contour and mask predictions** by the two GCN layers for the occluder and occludee in **the same ROI region** specified by the red bounding box, which also makes the final segmentation result of BCNet more explainable than previous methods. The heatmap visualization of GCN-1 in fourth column example shows that **BCNet handles multiple occluders with in the same RoI by grouping them together**. See our paper for more visual examples and comparisons.
-          </center></td>
+        <td><center><img src="figures/mask_transfiner.gif" height="400"></td>
 </tr>
 </table>
-<table>
+<!-- <table>
     <tr>
           <td><center><img src="figures/fig_vis1_new.png" height="260">
               
-Qualitative instance segmentation results of our BCNet, using ResNet-101-FPN and FCOS detector.
+Qualitative instance segmentation results of our transfiner, using ResNet-101-FPN and FCOS detector.
           </center></td>
 </tr>
-</table>
+</table> -->
 
 ## Mask Transfiner with Quadtree Transformer
 <img src="figures/transfiner-banner.png" width="800">
@@ -47,7 +44,7 @@ Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
 Res-R50-FPN | PANet (CVPR'18) | 36.6 |
 Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
 Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
-Res-R50-FPN | BCNet (CVPR'21) | [**38.4**](scores/stdout_r50_frcnn.txt) | 
+Res-R50-FPN | transfiner (CVPR'21) | [**38.4**](scores/stdout_r50_frcnn.txt) | 
 **Res-R50-FPN** | **Transfiner (CVPR'22)**  | 39.4 |
 **Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5 |
 
@@ -57,7 +54,7 @@ Res-R101-FPN | Mask R-CNN (ICCV'17) | 36.1 |
 Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
 Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
-Res-R101-FPN | BCNet (CVPR'21) | [**39.8**](scores/stdout_frcnn.txt)|
+Res-R101-FPN | transfiner (CVPR'21) | [**39.8**](scores/stdout_frcnn.txt)|
 **Res-R101-FPN** | **Transfiner (CVPR'22)** | 40.7 | 
 **Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | 42.2 | 
 
@@ -65,7 +62,7 @@ Introduction
 -----------------
 Two-stage and query-based instance segmentation methods have achieved remarkable results. However, their segmented masks are still very coarse. In this paper, we present Mask Transfiner for high-quality and efficient instance segmentation. Instead of operating on regular dense tensors, our Mask Transfiner decomposes and represents the image regions as a quadtree. Our transformer-based approach only processes detected error-prone tree nodes and self-corrects their errors in parallel. While these sparse pixels only constitute a small proportion of the total number, they are critical to the final mask quality. This allows Mask Transfiner to predict highly accurate instance masks, at a low computational cost. Extensive experiments demonstrate that Mask Transfiner outperforms current instance segmentation methods on three popular benchmarks, significantly improving both two-stage and query-based frameworks by a large margin of +3.0 mask AP on COCO and BDD100K, and +6.6 boundary AP on Cityscapes. 
 
-<center>
+<!-- <center>
 <table>
     <tr>
           <td><center><img src="figures/framework_new.png" height="430"></center></td>
@@ -77,12 +74,12 @@ A brief comparison of mask head architectures, see our paper for full details.
           <td><center><img src="figures/netcompare.png" height="270"></center></td>
     </tr>
 </table>
-</center>
+</center> -->
 
 ## Step-by-step Installation
 ```
-conda create -n bcnet python=3.7 -y
-source activate bcnet
+conda create -n transfiner python=3.7 -y
+source activate transfiner
  
 conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
  
@@ -100,10 +97,10 @@ git clone https://github.com/cocodataset/cocoapi.git
 cd cocoapi/PythonAPI
 python setup.py build_ext install
  
-# install BCNet
+# install transfiner
 cd $INSTALL_DIR
-git clone https://github.com/lkeab/BCNet.git
-cd BCNet/
+git clone https://github.com/lkeab/transfiner.git
+cd transfiner/
 python3 setup.py build develop
  
 unset INSTALL_DIR
