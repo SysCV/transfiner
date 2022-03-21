@@ -1,0 +1,11 @@
+_BASE_: "../Base-RCNN-FPN-4gpu.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+    DEFORM_ON_PER_STAGE: [False, True, True, True] # on Res3,Res4,Res5
+    DEFORM_MODULATED: False
+SOLVER:
+  STEPS: (420000, 500000) # (210000, 250000)
+  MAX_ITER: 540000 # 270000

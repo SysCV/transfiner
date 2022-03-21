@@ -1,0 +1,11 @@
+_BASE_: "../Base-RCNN-FPN-4gpu.yaml"
+MODEL:
+  WEIGHTS: "./output_3x_finetune_101/model_final.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 101
+    DEFORM_ON_PER_STAGE: [False, True, True, True] # on Res3,Res4,Res5
+    DEFORM_MODULATED: False
+SOLVER:
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000

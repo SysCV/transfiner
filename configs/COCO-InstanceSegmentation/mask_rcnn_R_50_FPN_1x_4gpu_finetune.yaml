@@ -1,0 +1,6 @@
+_BASE_: "../Base-RCNN-FPN-4gpu.yaml"
+MODEL:
+  WEIGHTS: "./model_final_a54504.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50

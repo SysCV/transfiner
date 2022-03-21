@@ -17,8 +17,8 @@ Highlights
 Visualization of the High-quality Mask Predictions
 -----------------
 <table>
-    <tr>
-        <td><center><img src="figures/mask_transfiner.gif" height="450"></td>
+<tr>
+        <td><center><img src="figures/mask_transfiner_banner.gif" height="450"></td>
 </tr>
 </table>
 <!-- <table>
@@ -81,13 +81,14 @@ A brief comparison of mask head architectures, see our paper for full details.
 conda create -n transfiner python=3.7 -y
 source activate transfiner
  
-conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
  
-# FCOS and coco api and visualization dependencies
+# Coco api and visualization dependencies
 pip install ninja yacs cython matplotlib tqdm
 pip install opencv-python==4.4.0.40
 # Boundary dependency
 pip install scikit-image
+pip install kornia==0.5.11
  
 export INSTALL_DIR=$PWD
  
@@ -108,7 +109,7 @@ unset INSTALL_DIR
 
 
 ## Dataset Preparation
-Prepare for [coco2017](http://cocodataset.org/#home) dataset following [this instruction](https://github.com/facebookresearch/detectron2/tree/master/datasets). And use our [converted mask annotations](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/EW2ZVyev7e5Pr1fVfF2nn18BRod82j_jW5Z4ywYd1evq8Q?e=qj0Bbm) to replace original annotation file for bilayer decoupling training.
+Prepare for [coco2017](http://cocodataset.org/#home) dataset following [this instruction](https://github.com/facebookresearch/detectron2/tree/master/datasets).
 
 ```
   mkdir -p datasets/coco
