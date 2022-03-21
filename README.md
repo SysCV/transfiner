@@ -127,7 +127,7 @@ CUDA_VISIBLE_DEVICES=0,1 python3 tools/train_net.py --num-gpus 2 \
 
 Pretrained Models
 ---------------
-FCOS-version download: [link](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/EfiDFLLEawFJpruwuOl3h3ABBjAKysTf0qJQU80iaKbqYg?e=igzC51)
+FCOS-version download: [link](TBD)
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
