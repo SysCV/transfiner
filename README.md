@@ -39,9 +39,9 @@ Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
 Res-R50-FPN | PANet (CVPR'18) | 36.6 |
 Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
 Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
-Res-R50-FPN | BCNet (CVPR'21) | [**38.4**](scores/stdout_r50_frcnn.txt) | 
-**Res-R50-FPN** | **Transfiner (CVPR'22)**  | 39.4 |
-**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5 |
+Res-R50-FPN | BCNet (CVPR'21) | 38.4 | 
+Res-R50-FPN | Transfiner (CVPR'22)  | 39.4 |
+**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | **40.5** |
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
@@ -49,9 +49,9 @@ Res-R101-FPN | Mask R-CNN (ICCV'17) | 36.1 |
 Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
 Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
-Res-R101-FPN | BCNet (CVPR'21) | [**39.8**](scores/stdout_frcnn.txt)|
-**Res-R101-FPN** | **Transfiner (CVPR'22)** | 40.7 | 
-**Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | 42.2 | 
+Res-R101-FPN | BCNet (CVPR'21) | 39.8|
+Res-R101-FPN | Transfiner (CVPR'22) | 40.7 | 
+**Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | **42.2** | 
 
 Introduction
 -----------------
