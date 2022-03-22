@@ -1,6 +1,6 @@
 _BASE_: "../Base-RCNN-FPN-4gpu.yaml"
 MODEL:
-  WEIGHTS: "./model_final_f10217.pkl"
+  WEIGHTS: "./init_weights/model_final_f10217.pkl"
   MASK_ON: True
   RESNETS:
     DEPTH: 50

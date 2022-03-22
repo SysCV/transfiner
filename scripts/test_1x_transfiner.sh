@@ -6,15 +6,8 @@ export PYTHONPATH=$PYTHONPATH:`pwd`
 
 ID=159
 
-#CUDA_VISIBLE_DEVICES=0 python3 tools/train_net.py --num-gpus 1 \
-#	--config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 tools/train_net.py --num-gpus 4 --dist-url tcp://0.0.0.0:12346 \
-	--config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x_4gpu_finetune.yaml \
-        --eval-only MODEL.WEIGHTS ./output_1x_finetune/model_final.pth
+	--config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x_4gpu_transfiner.yaml \
+        --eval-only MODEL.WEIGHTS ./pretrained_model/output_1x_finetune_r50.pth
 
-# CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 tools/train_net.py --num-gpus 8 \
-# 	--config-file configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml
-
-#2>&1 &    
-# | tee log/train_log_$ID.txt

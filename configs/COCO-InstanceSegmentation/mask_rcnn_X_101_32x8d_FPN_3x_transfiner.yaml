@@ -1,7 +1,7 @@
 _BASE_: "../Base-RCNN-FPN-4gpu.yaml"
 MODEL:
   MASK_ON: True
-  WEIGHTS: "./model_final_x101.pkl"
+  WEIGHTS: "./init_weights/model_final_x101.pkl"
   PIXEL_STD: [57.375, 57.120, 58.395]
   RESNETS:
     STRIDE_IN_1X1: False  # this is a C2 model

@@ -384,16 +384,8 @@ class Visualizer:
             output (VisImage): image object with visualizations.
         """
         boxes = predictions.pred_boxes if predictions.has("pred_boxes") else None
-        # print('boxes:', len(boxes))
-        # print('boxes:', boxes.tensor.shape)
-        # print('boxes:', boxes.tensor)
-        #locations = boxes.tensor[:, 0] + boxes.tensor[:, 2]
-        #_, orders = torch.sort(locations)
-        # print('orders:', orders)
         scores = predictions.scores if predictions.has("scores") else None
         classes = predictions.pred_classes.tolist() if predictions.has("pred_classes") else None
-        print('classes:', len(classes))
-        print('scores:', len(scores))
         labels = _create_text_labels(classes, scores, self.metadata.get("thing_classes", None))
         keypoints = predictions.pred_keypoints if predictions.has("pred_keypoints") else None
 
@@ -405,30 +397,13 @@ class Visualizer:
         else:
             masks = None
         
-        mask_areas = torch.tensor(masks).flatten(1).sum(1)
-        print('mask areas shapehhhhhhhh:', mask_areas.shape)
-        locations = mask_areas #boxes.tensor[:, 0] + boxes.tensor[:, 2]
-        _, orders = torch.sort(locations, descending=True)
-        # print('orders:', orders)
-        # print('masks:', len(masks))
-        print('masks:', masks.shape)
-        boxes = boxes[orders.tolist()]
-        if len(masks) > 1:
-            masks = masks[orders]
-            scores = scores[orders]
-        classes = [classes[int(o)] for o in orders]
-        print('len boxes hhh:', len(boxes))
-        print('len masks hhh:', len(masks))
 
-        print('self.metadata.get(thing_colors):', self.metadata.get("thing_colors"))
         if self._instance_mode == ColorMode.SEGMENTATION and self.metadata.get("thing_colors"):
-            print('goto here 1?')
             colors = [
                 self._jitter([x / 255 for x in self.metadata.thing_colors[c]]) for c in classes
             ]
             alpha = 0.8
         else:
-            print('goto here 2?')
             colors = None
             alpha = 0.5
 

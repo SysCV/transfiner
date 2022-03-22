@@ -1,10 +1,12 @@
 _BASE_: "../Base-RCNN-FPN-4gpu.yaml"
 MODEL:
-  WEIGHTS: "./model_final_a3ec72.pkl"
-  #WEIGHTS: "./output_3x_finetune_101/model_final.pth"
+  WEIGHTS: "./init_weights/model_final_f10217.pkl"
   MASK_ON: True
   RESNETS:
-    DEPTH: 101
+    DEPTH: 50
 SOLVER:
   STEPS: (210000, 250000)
   MAX_ITER: 270000
+DATASETS:
+  TEST: ("lvis_v0.5_val_cocofied",)
+
