@@ -133,7 +133,7 @@ Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_con
   #And put the downloaded pretrained models in this directory.
 ```
 
-Init Weights
+Initial Weights
 ---------------
 Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_connect_ust_hk/Evb1jo2xDKxJoGSJxJ0aej4B8dfRsR9F7KByvlyF4SOL_A?e=hT81c9)
 ```
