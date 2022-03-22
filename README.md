@@ -105,7 +105,7 @@ unset INSTALL_DIR
 
 
 ## Dataset Preparation
-Prepare for [coco2017](http://cocodataset.org/#home) dataset following [this instruction](https://github.com/facebookresearch/detectron2/tree/master/datasets).
+Prepare for [coco2017](http://cocodataset.org/#home) dataset and [Cityscapes](https://www.cityscapes-dataset.com) following [this instruction](https://github.com/facebookresearch/detectron2/tree/master/datasets).
 
 ```
   mkdir -p datasets/coco
@@ -115,16 +115,15 @@ Prepare for [coco2017](http://cocodataset.org/#home) dataset following [this ins
   ln -s /path_to_coco_dataset/val2017 datasets/coco/val2017
 ```
 
-Multi-GPU Training and evaluation on Validation set
+Multi-GPU Training and Evaluation on Validation set
 ---------------
 ```
 bash scripts/train_4gpu_transfiner_3x_101.sh
 ```
-<!-- Or
+Or
 ```
-CUDA_VISIBLE_DEVICES=0,1 python3 tools/train_net.py --num-gpus 2 \
-	--config-file configs/fcos/fcos_imprv_R_50_FPN.yaml 2>&1 | tee log/train_log.txt
-``` -->
+bash scripts/train_4gpu.sh
+```
 
 Pretrained Models
 ---------------
@@ -151,7 +150,7 @@ bash scripts/test_3x_transfiner_101_deform.sh
 Visualization
 ---------------
 ```
-bash scripts/visualize.sh
+bash scripts/visual.sh
 ```
 
 Citation
