@@ -14,11 +14,12 @@ Highlights
 - **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmakrs, including COCO, Cityscapes and BDD100k. 
 - **Simple:** Small additional computation burden and easy to use.
 
-<img src="figures/mask_transfiner_banner.gif" height="430">
+<img src="figures/mask_transfiner_banner.gif" width="800">
 
 <!-- <table>
     <tr>
           <td><center><img src="figures/fig_vis1_new.png" height="260">
+<img src="figures/mask_transfiner_banner.gif" height="430">
               
 Qualitative instance segmentation results of our transfiner, using ResNet-101-FPN and FCOS detector.
           </center></td>
