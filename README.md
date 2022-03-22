@@ -118,7 +118,7 @@ Prepare for [coco2017](http://cocodataset.org/#home) dataset following [this ins
 Multi-GPU Training and evaluation on Validation set
 ---------------
 ```
-bash all.sh
+bash scripts/train_4gpu_transfiner_3x_101.sh
 ```
 Or
 ```
@@ -128,25 +128,30 @@ CUDA_VISIBLE_DEVICES=0,1 python3 tools/train_net.py --num-gpus 2 \
 
 Pretrained Models
 ---------------
-FCOS-version download: [link](TBD)
+Download: [link](TBD)
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
 ```
 
+Init Weights
+---------------
+Download: [link](TBD)
+```
+  mkdir init_weights
+  #And put the downloaded init models weights in this directory.
+```
+
 Testing on Test-dev
 ---------------
 ```
-export PYTHONPATH=$PYTHONPATH:`pwd`
-CUDA_VISIBLE_DEVICES=0,1 python3 tools/train_net.py --num-gpus 2 \
-	--config-file configs/fcos/fcos_imprv_R_101_FPN.yaml \
-	--eval-only MODEL.WEIGHTS ./pretrained_models/xxx.pth 2>&1 | tee log/test_log.txt
+bash scripts/test_3x_transfiner_101_deform
 ```
 
 Visualization
 ---------------
 ```
-bash visualize.sh
+bash scripts/visualize.sh
 ```
 
 Citation
