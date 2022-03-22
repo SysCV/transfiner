@@ -14,7 +14,7 @@ Highlights
 - **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmakrs, including COCO, Cityscapes and BDD100k. 
 - **Simple:** Small additional computation burden and easy to use.
 
-<img src="figures/mask_transfiner_banner.gif" height="450">
+<img src="figures/mask_transfiner_banner.gif" height="430">
 
 <!-- <table>
     <tr>
