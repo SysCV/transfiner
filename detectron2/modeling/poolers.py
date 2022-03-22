@@ -8,7 +8,6 @@ from torchvision.ops import RoIPool
 
 from detectron2.layers import ROIAlign, ROIAlignRotated, cat, nonzero_tuple
 from detectron2.structures import Boxes
-# from detectron2.layers import Conv2d
 
 """
 To export ROIPooler to torchscript, in this file, variables that should be annotated with
@@ -156,7 +155,6 @@ class ROIPooler(nn.Module):
                 for scale in scales
             )
         elif pooler_type == "ROIAlignV2":
-            # print('scales:', scales)
 
             self.level_poolers = nn.ModuleList(
                 ROIAlign(
@@ -165,7 +163,6 @@ class ROIPooler(nn.Module):
                 for scale in scales
             )
             if output_size[0] > 7:
-                #scales = (0.5, 0.25, 0.125, 0.0625, 0.03125)
                 self.conv_norm_relus_semantic = nn.Sequential(
                     nn.Conv2d(256, 256, 3, 1, 1),
                     nn.ReLU(),
@@ -175,7 +172,6 @@ class ROIPooler(nn.Module):
                     nn.ReLU(),
                     nn.Conv2d(256, 256, 3, 1, 1),
                 )
-                #self.conv_downsample = nn.Conv2d(256, 256, 3, 2, 1)
                 self.level_poolers = nn.ModuleList(
                     ROIAlign(
                         output_size, spatial_scale=scale, sampling_ratio=sampling_ratio, aligned=True

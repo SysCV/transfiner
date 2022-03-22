@@ -535,9 +535,9 @@ class BaseMaskRCNNHead(nn.Module):
             mask_probs_pred = pred_mask_logits[indices,
                                            class_pred][:, None].sigmoid()
             
-            mask_uncertain_bool = (pred_mask_logits_uncertain.detach() >= 1e-6) # 0.0001, ori is 0.5, main contribution
-            mask_uncertain_bool_lg = (pred_mask_logits_uncertain_lg.detach() >= 0.125).squeeze(1) # 0.125 in result, ori is 0.5 for speed
-            mask_uncertain_bool_lg_l = (pred_mask_logits_uncertain_lg_l.detach() >= 0.8).squeeze(1).cpu() # 0.5, 0.8, ori is 0.1 0.5 also final 1 is 0.05
+            mask_uncertain_bool = (pred_mask_logits_uncertain.detach() >= 1e-6) 
+            mask_uncertain_bool_lg = (pred_mask_logits_uncertain_lg.detach() >= 0.125).squeeze(1) 
+            mask_uncertain_bool_lg_l = (pred_mask_logits_uncertain_lg_l.detach() >= 0.8).squeeze(1).cpu() 
         
             if mask_uncertain_bool_lg_l.shape[0] > 0:
                 kernel = torch.ones(3, 3)
