@@ -34,7 +34,7 @@ Results on COCO test-dev
 ------------
 (Check Table 9 of the paper for full results, all methods are trained on COCO train2017)
 
-| Backbone  | Method | mAP(mask) |
+| Backbone  | Method | mAP(mask) | 
 |----------|--------|-----------|
 Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
 Res-R50-FPN | PANet (CVPR'18) | 36.6 |
@@ -51,8 +51,8 @@ Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
 Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
 Res-R101-FPN | BCNet (CVPR'21) | 39.8|
-Res-R101-FPN | Transfiner (CVPR'22) | 40.7 | 
-**Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | **42.2** | 
+Res-R101-FPN | Transfiner (CVPR'22) | 40.7, [Pretrained Model](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/ETnkg_whugxDtty354f_RUYBlSOnb84HGyxJm6ZvsCsz3A?e=WWk3g1) | 
+**Res-R101-FPN-DCN** | **Transfiner (CVPR'22)** | **42.2**, [Pretrained Model](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/ETzpdd3_QwNMnUFQ3DeqFqMBIn08xZIpyxYFczX_jq_xEw?e=1TnYKj) | 
 
 Introduction
 -----------------
@@ -120,15 +120,15 @@ Multi-GPU Training and evaluation on Validation set
 ```
 bash scripts/train_4gpu_transfiner_3x_101.sh
 ```
-Or
+<!-- Or
 ```
 CUDA_VISIBLE_DEVICES=0,1 python3 tools/train_net.py --num-gpus 2 \
 	--config-file configs/fcos/fcos_imprv_R_50_FPN.yaml 2>&1 | tee log/train_log.txt
-```
+``` -->
 
 Pretrained Models
 ---------------
-Download: [link](TBD)
+Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_connect_ust_hk/EqYIfZDfFDhIrTcTpNP79ccBoZ6L1FxAXqQxtGiH4Q0Z0A?e=9buMwd)
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
@@ -136,7 +136,7 @@ Download: [link](TBD)
 
 Init Weights
 ---------------
-Download: [link](TBD)
+Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_connect_ust_hk/Evb1jo2xDKxJoGSJxJ0aej4B8dfRsR9F7KByvlyF4SOL_A?e=hT81c9)
 ```
   mkdir init_weights
   #And put the downloaded init models weights in this directory.
@@ -145,7 +145,7 @@ Download: [link](TBD)
 Testing on Test-dev
 ---------------
 ```
-bash scripts/test_3x_transfiner_101_deform
+bash scripts/test_3x_transfiner_101_deform.sh
 ```
 
 Visualization
