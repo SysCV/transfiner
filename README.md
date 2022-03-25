@@ -32,7 +32,7 @@ Qualitative instance segmentation results of our transfiner, using ResNet-101-FP
 
 Results on COCO test-dev
 ------------
-(Check Table 9 of the paper for full results, all methods are trained on COCO train2017)
+(Check Table 9 of the paper for full results, all methods are trained on COCO train2017. This is a reimplementation. Thus, the numbers might be slightly different from the ones reported in our original paper.)
 
 | Backbone  | Method | mAP(mask) | 
 |----------|--------|-----------|
