@@ -11,7 +11,7 @@ Highlights
 -----------------
 - **Transfiner:** High-quality instance segmentation with state-of-the-art performance and extreme details.
 - **Novelty:** An efficient transformer targeting for high-resolution instance masks predictions based on the quadtree structure.
-- **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmakrs, including COCO, Cityscapes and BDD100k. 
+- **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmarks, including COCO, Cityscapes and BDD100k. 
 - **Simple:** Small additional computation burden and easy to use.
 
 <img src="figures/mask_transfiner_banner.gif" width="800">
