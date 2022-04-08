@@ -96,7 +96,7 @@ python setup.py build_ext install
  
 # install transfiner
 cd $INSTALL_DIR
-git clone https://github.com/lkeab/transfiner.git
+git clone --recursive https://github.com/SysCV/transfiner.git
 cd transfiner/
 python3 setup.py build develop
  
