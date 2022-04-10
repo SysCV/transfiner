@@ -168,3 +168,12 @@ If you find Mask Transfiner useful in your research or refer to the provided bas
     year = {2022}
 }  
 ```
+Related Links
+---------------
+Related NeurIPS 2021 Work on multiple object tracking & segmentation: [PCAN](https://github.com/SysCV/pcan)
+
+Related CVPR 2021 Work on occlusion-aware instance segmentation: [BCNet](https://github.com/lkeab/BCNet)
+
+Related ECCV 2020 Work on partially supervised instance segmentation: [CPMask](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123530375.pdf)
+
+
