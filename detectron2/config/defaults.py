@@ -606,15 +606,7 @@ _C.TEST.PRECISE_BN.NUM_ITER = 200
 # Misc options
 # ---------------------------------------------------------------------------- #
 # Directory where output files are written
-#_C.OUTPUT_DIR = "./output_3x_finetune_101_deformable_backup"
-#_C.OUTPUT_DIR = "./output_3x_finetune_101_test"
-_C.OUTPUT_DIR = "./output_3x_finetune_r50_deform_test"
-#_C.OUTPUT_DIR = "./output_3x_finetune"
-#_C.OUTPUT_DIR = "./output_3x_finetune_101_dev"
-#_C.OUTPUT_DIR = "./output_3x_finetune_50_dev"
-#_C.OUTPUT_DIR = "./output_1x_finetune_50_ablatin2"
-#_C.OUTPUT_DIR = "./output_3x_finetune_x_50_bound"
-#_C.OUTPUT_DIR = "./output"
+_C.OUTPUT_DIR = "./output"
 # Set seed to negative to fully randomize everything.
 # Set seed to positive to use a fixed seed. Note that a fixed seed increases
 # reproducibility but does not guarantee fully deterministic behavior.
