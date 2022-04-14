@@ -1,6 +1,6 @@
 _BASE_: "../Base-RCNN-FPN-4gpu.yaml"
 MODEL:
-  WEIGHTS: "./pretrained_model/output_3x_finetune_r101.pth"
+  WEIGHTS: "./init_weights/model_final_a3ec72.pkl"
   MASK_ON: True
   RESNETS:
     DEPTH: 101
