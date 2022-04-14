@@ -1,7 +1,7 @@
 # Mask Transfiner
 Mask Transfiner for High-Quality Instance Segmentation [Mask Transfiner, CVPR 2022].
 
-This is the official pytorch implementation of [Transfiner](https://arxiv.org/abs/2111.13673) built on the open-source detectron2. Our project website contains more information, including the visual slider comparison: [vis.xyz/pub/transfiner](https://www.vis.xyz/pub/transfiner/).
+This is the official pytorch implementation of [Transfiner](https://arxiv.org/abs/2111.13673) built on the open-source detectron2 [under construction]. Our project website contains more information, including the visual slider comparison: [vis.xyz/pub/transfiner](https://www.vis.xyz/pub/transfiner/).
 
 > [**Mask Transfiner for High-Quality Instance Segmentation**](https://arxiv.org/abs/2111.13673)           
 > Lei Ke, Martin Danelljan, Xia Li, Yu-Wing Tai, Chi-Keung Tang, Fisher Yu  
