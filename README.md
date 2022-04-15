@@ -12,7 +12,7 @@ Highlights
 - **Transfiner:** High-quality instance segmentation with state-of-the-art performance and extreme details.
 - **Novelty:** An efficient transformer targeting for high-resolution instance masks predictions based on the quadtree structure.
 - **Efficacy:** Large mask and boundary AP improvements on three instance segmentation benchmarks, including COCO, Cityscapes and BDD100k. 
-- **Simple:** Small additional computation burden and easy to use.
+- **Simple:** Small additional computation burden compared to standard transformer and easy to use.
 
 <!-- <img src="figures/mask_transfiner_banner.gif" width="800"> -->
 - :fire::fire: **Play with our Mask Transfiner demo** at [![Huggingfaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/lkeab/transfiner), supported by [Huggingface Spaces](https://huggingface.co/spaces) with [Gradio](https://github.com/gradio-app/gradio).
