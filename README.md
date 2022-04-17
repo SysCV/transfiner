@@ -47,7 +47,7 @@ Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
 Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
 Res-R50-FPN | [BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 38.4 | 
 Res-R50-FPN | Transfiner (CVPR'22)  | 39.4,  [Pretrained Model](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/EeeZhgmBnFdOn1XLVsnNGKEBQezvmG8KwZBnVsyk9VjrgQ?e=8wCcgV)|
-**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | **40.5** |
+**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | **40.5**, [Pretrained Model](https://hkustconnect-my.sharepoint.com/:u:/g/personal/lkeab_connect_ust_hk/Efghd80o1MZAsi66ZMF3LhgBoXcOdZTRZPFMgSanX6auGQ?e=ekidx4) |
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
