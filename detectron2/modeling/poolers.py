@@ -265,7 +265,7 @@ class ROIPooler(nn.Module):
         if self.training:
             LIMIT = 50 
         else:
-            LIMIT = 100 
+            LIMIT = 10 
             
         if self.output_size[0] > 7:
             level_assignments_d = level_assignments.clone()[:LIMIT]

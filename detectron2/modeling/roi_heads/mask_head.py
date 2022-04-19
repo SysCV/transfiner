@@ -524,7 +524,8 @@ class BaseMaskRCNNHead(nn.Module):
                 x, x_uncertain, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, encoder, instances, self.vis_period)
             return {"loss_mask": loss_masks * self.loss_weight, "loss_mask_uncertain": loss_mask_uncertains * self.loss_weight * 0.5, "loss_mask_refine": loss_mask_refine, "loss_semantic": loss_semantic}
         else:
-            pred_mask_logits_uncertain = x_uncertain[:, 0]
+            LIMIT = 10
+            pred_mask_logits_uncertain = x_uncertain[:, 0][:LIMIT]
             pred_mask_logits_uncertain_lg = F.interpolate(pred_mask_logits_uncertain.unsqueeze(1), (56, 56))
             pred_mask_logits_uncertain_lg_l = F.interpolate(pred_mask_logits_uncertain.unsqueeze(1), (112, 112))
             pred_mask_logits = x
@@ -532,25 +533,28 @@ class BaseMaskRCNNHead(nn.Module):
             num_masks = pred_mask_logits.shape[0]
             class_pred = cat([i.pred_classes for i in instances])
             indices = torch.arange(num_masks, device=class_pred.device)
-            mask_probs_pred = pred_mask_logits[indices,
-                                           class_pred][:, None].sigmoid()
+            x_c = x_c[:LIMIT]
+
+            mask_probs_pred = pred_mask_logits[indices, class_pred][:, None].sigmoid()
+
             
             mask_uncertain_bool = (pred_mask_logits_uncertain.detach() >= 1e-6) 
             mask_uncertain_bool_lg = (pred_mask_logits_uncertain_lg.detach() >= 0.125).squeeze(1) 
             mask_uncertain_bool_lg_l = (pred_mask_logits_uncertain_lg_l.detach() >= 0.8).squeeze(1).cpu() 
-        
-            if mask_uncertain_bool_lg_l.shape[0] > 0:
-                kernel = torch.ones(3, 3)
-                mask_uncertain_bool_lg_l = dilation(mask_uncertain_bool_lg_l.unsqueeze(1).float(), kernel).squeeze(1).bool()
 
-
-            pred_mask_logits_bool = mask_probs_pred
+            # if mask_uncertain_bool_lg_l.shape[0] > 0:
+            #     kernel = torch.ones(3, 3)
+            #     mask_uncertain_bool_lg_l = dilation(mask_uncertain_bool_lg_l.unsqueeze(1).float(), kernel).squeeze(1).bool()
+       
+            pred_mask_logits_bool_ori = F.interpolate(
+                mask_probs_pred.float(), (112, 112), mode='bilinear')
+                
+            pred_mask_logits_bool = mask_probs_pred[:LIMIT]
             pred_mask_logits_bool_small = F.interpolate(
                 pred_mask_logits_bool.float(), (14, 14), mode='bilinear')
             pred_mask_logits_bool_large = F.interpolate(
                 pred_mask_logits_bool.float(), (56, 56), mode='bilinear')
-            pred_mask_logits_bool_large_l = F.interpolate(
-                pred_mask_logits_bool.float(), (112, 112), mode='bilinear')
+            pred_mask_logits_bool_large_l = pred_mask_logits_bool_ori[:LIMIT]
 
             uncertain_pos = torch.nonzero(mask_uncertain_bool, as_tuple=True)
             uncertain_pos_lg = torch.nonzero(mask_uncertain_bool_lg, as_tuple=True)
@@ -569,13 +573,13 @@ class BaseMaskRCNNHead(nn.Module):
             pred_coarse_labels_large = pred_mask_logits_bool_large.squeeze(1)[uncertain_pos_lg]
             pred_coarse_labels_large_l = pred_mask_logits_bool_large_l.squeeze(1)[uncertain_pos_lg_l]
             
-            number_pts = [(uncertain_pos[0] == ci).sum().item() for ci in range(pred_mask_logits.shape[0])]
+            number_pts = [(uncertain_pos[0] == ci).sum().item() for ci in range(pred_mask_logits_bool.shape[0])]
             number_pts = torch.cumsum(torch.tensor(number_pts), dim=0)
 
-            number_pts_l = [(uncertain_pos_lg[0] == ci).sum().item() for ci in range(pred_mask_logits.shape[0])]
+            number_pts_l = [(uncertain_pos_lg[0] == ci).sum().item() for ci in range(pred_mask_logits_bool.shape[0])]
             number_pts_l = torch.cumsum(torch.tensor(number_pts_l), dim=0)
 
-            number_pts_ll = [(uncertain_pos_lg_l[0] == ci).sum().item() for ci in range(pred_mask_logits.shape[0])]
+            number_pts_ll = [(uncertain_pos_lg_l[0] == ci).sum().item() for ci in range(pred_mask_logits_bool.shape[0])]
             number_pts_ll = torch.cumsum(torch.tensor(number_pts_ll), dim=0)
 
 
@@ -667,12 +671,13 @@ class BaseMaskRCNNHead(nn.Module):
             for sel_p in selected_pred_list_hr_l:
                 select_num_hr_l += sel_p.shape[0]
 
+            pred_mask_logits_bool = F.interpolate(pred_mask_logits_bool, (112, 112), mode='bilinear', align_corners=True)
             if select_num_hr_l > 0: 
-                pred_mask_logits_bool = F.interpolate(pred_mask_logits_bool, (112, 112), mode='bilinear', align_corners=True)
                 selected_pred_list_cat_hr_l = torch.cat(selected_pred_list_hr_l)
                 pred_mask_logits_bool.squeeze(1)[uncertain_pos_lg_l] = selected_pred_list_cat_hr_l
 
-            mask_probs_pred = pred_mask_logits_bool.split(num_boxes_per_image, dim=0)
+            pred_mask_logits_bool_ori[:LIMIT] = pred_mask_logits_bool
+            mask_probs_pred = pred_mask_logits_bool_ori.split(num_boxes_per_image, dim=0)
 
             for prob, ins in zip(mask_probs_pred, instances):
                 ins.pred_masks = prob  # (1, Hmask, Wmask)
