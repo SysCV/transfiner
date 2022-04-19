@@ -831,7 +831,8 @@ class MaskRCNNConvUpsampleHead(BaseMaskRCNNHead):
         x_uncertain = self.deconv_uncertain(x_uncertain)
         mask_uncertain = self.sig(self.predictor_uncertain(x_uncertain))
 
-        x_p2_s = self.predictor_semantic_s(x_p2_s) # additional
+        if self.training:
+            x_p2_s = self.predictor_semantic_s(x_p2_s) # additional
 
         return mask, mask_uncertain, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, self.encoder
 
