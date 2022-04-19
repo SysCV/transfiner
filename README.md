@@ -154,6 +154,7 @@ bash scripts/test_3x_transfiner_101_deform.sh
 
 Visualization
 ---------------
+(Uncomment L545-547 of [roi_head.py](detectron2/modeling/roi_heads/mask_head.py) for better visualization.)
 ```
 bash scripts/visual.sh
 ```
