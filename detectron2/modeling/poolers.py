@@ -263,7 +263,7 @@ class ROIPooler(nn.Module):
         )
         
         if self.training:
-            LIMIT = 50 
+            LIMIT = 30 
         else:
             LIMIT = 10 
             

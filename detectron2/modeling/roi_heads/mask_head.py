@@ -282,7 +282,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     mask_loss_uncertain = dice_loss_my(
         pred_mask_logits_uncertain, gt_masks_uncertain, pred_mask_logits_uncertain.shape[0]) + F.binary_cross_entropy(pred_mask_logits_uncertain, gt_masks_uncertain, reduction="mean")
 
-    LIMIT = 50  #
+    LIMIT = 30  #
 
     pred_mask_logits_uncertain = pred_mask_logits_uncertain[:LIMIT] 
     pred_mask_logits_uncertain_lg = pred_mask_logits_uncertain_lg[:LIMIT]
@@ -290,7 +290,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     pred_mask_logits = pred_mask_logits[:LIMIT]
 
 
-    mask_uncertain_bool = (pred_mask_logits_uncertain.detach() >= 0.5)
+    mask_uncertain_bool = (pred_mask_logits_uncertain.detach() >= 0.125)
     mask_uncertain_bool_lg = (pred_mask_logits_uncertain_lg.detach() >= 0.5)
     mask_uncertain_bool_lg_l = (pred_mask_logits_uncertain_lg_l.detach() >= 0.5)
     
@@ -355,7 +355,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     number_pts_l = torch.cumsum(torch.tensor(number_pts_l), dim=0)
     number_pts_ll = torch.cumsum(torch.tensor(number_pts_ll), dim=0)
 
-    SAMPLE_NUM = 100
+    SAMPLE_NUM = 150
     uncertain_feats_box_list = []
     uncertain_feats_box_list_pos = []
     select_gt_box_list = []
@@ -404,15 +404,15 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
 
         rand_inx = torch.randperm(uncertain_feats_s.size()[0])
         if len(rand_inx) < SAMPLE_NUM:
-            rand_inx = rand_inx.repeat(10)[:SAMPLE_NUM]
+            rand_inx = rand_inx.repeat(15)[:SAMPLE_NUM]
         
         rand_inx_l = torch.randperm(uncertain_feats_s_l.size()[0])
         if len(rand_inx_l) < SAMPLE_NUM:
-            rand_inx_l = rand_inx_l.repeat(10)[:SAMPLE_NUM]
+            rand_inx_l = rand_inx_l.repeat(15)[:SAMPLE_NUM]
         
         rand_inx_ll = torch.randperm(uncertain_feats_s_ll.size()[0])
         if len(rand_inx_ll) < SAMPLE_NUM:
-            rand_inx_ll = rand_inx_ll.repeat(10)[:SAMPLE_NUM]
+            rand_inx_ll = rand_inx_ll.repeat(15)[:SAMPLE_NUM]
 
         uncertain_feats_s = uncertain_feats_s[rand_inx][:SAMPLE_NUM]
         uncertain_feats_s_l = uncertain_feats_s_l[rand_inx_l][:SAMPLE_NUM]
