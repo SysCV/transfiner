@@ -905,6 +905,12 @@ class TransformerEncoder(nn.Module):
             nn.ReLU(),
             nn.Conv2d(256, 1, 1, 1),
             nn.Sigmoid())
+        self._reset_parameters()
+
+    def _reset_parameters(self):
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
 
     def forward(self, src, pos=None):
         src = self.conv_fuse(src).squeeze(-1)

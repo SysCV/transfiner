@@ -97,6 +97,9 @@ def convert_boxes_to_pooler_format(box_lists: List[Boxes]):
 
     return pooler_fmt_boxes
 
+def weights_init(m):
+    if isinstance(m, nn.Conv2d):
+        torch.nn.init.xavier_uniform_(m.weight)
 
 class ROIPooler(nn.Module):
     """
@@ -172,6 +175,8 @@ class ROIPooler(nn.Module):
                     nn.ReLU(),
                     nn.Conv2d(256, 256, 3, 1, 1),
                 )
+                self.conv_norm_relus_semantic.apply(weights_init)
+
                 self.level_poolers = nn.ModuleList(
                     ROIAlign(
                         output_size, spatial_scale=scale, sampling_ratio=sampling_ratio, aligned=True
@@ -225,7 +230,7 @@ class ROIPooler(nn.Module):
         self.canonical_level = canonical_level
         assert canonical_box_size > 0
         self.canonical_box_size = canonical_box_size
-
+    
     def forward(self, x: List[torch.Tensor], box_lists: List[Boxes]):
         """
         Args:
