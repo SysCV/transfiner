@@ -9,6 +9,9 @@ import numpy as np
 import copy
 import math
 
+from detectron2.layers import get_instances_contour_interior
+from pytorch_toolbelt import losses as L
+
 from kornia.morphology import dilation
 
 from detectron2.layers.roi_align import ROIAlign
@@ -147,7 +150,7 @@ def crop_and_resize_my(bit_masks, boxes: torch.Tensor, mask_size: int, sfact: in
 
 
 @torch.jit.unused
-def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: torch.Tensor, x_hr: torch.Tensor, x_hr_l: torch.Tensor, x_hr_ll: torch.Tensor, x_c: torch.Tensor, x_p2_s: torch.Tensor, transfomer_encoder: torch.nn.Module, instances: List[Instances], vis_period: int = 0):
+def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: torch.Tensor, pred_boundary_logits: torch.Tensor, x_hr: torch.Tensor, x_hr_l: torch.Tensor, x_hr_ll: torch.Tensor, x_c: torch.Tensor, x_p2_s: torch.Tensor, transfomer_encoder: torch.nn.Module, instances: List[Instances], vis_period: int = 0):
     """
     Compute the mask prediction loss defined in the Mask R-CNN paper.
 
@@ -178,6 +181,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     gt_masks_ll = []
     gt_masks_uncertain = []
     gt_semantic_mask_s = []
+    gt_boundary = []
 
     for index, instances_per_image in enumerate(instances):
         # if index >= 1:
@@ -205,7 +209,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
         gt_masks_per_image_ll = instances_per_image.gt_masks.crop_and_resize(
             instances_per_image.proposal_boxes.tensor, mask_side_len * 2 * 2
         ).to(device=pred_mask_logits.device)
-
+        
         
         gt_masks_per_image_s = instances_per_image.gt_masks.crop_and_resize(
             instances_per_image.proposal_boxes.tensor, int(mask_side_len * 0.5)
@@ -213,6 +217,16 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
 
         gt_masks_per_image_uncertain = crop_and_resize_my(mask_uncertain.squeeze(
             1), instances_per_image.proposal_boxes.tensor, mask_side_len, sfact).to(device=pred_mask_logits.device)
+        
+        boundary_ls = []
+        for mask in gt_masks_per_image:
+            mask_b = mask.data.cpu().numpy()
+            boundary, inside_mask, weight = get_instances_contour_interior(mask_b)
+            boundary = torch.from_numpy(boundary).to(device=mask.device).unsqueeze(0)
+
+            boundary_ls.append(boundary)
+
+        gt_boundary.append(cat(boundary_ls, dim=0))
 
         gt_masks.append(gt_masks_per_image)
         gt_masks_s.append(gt_masks_per_image_s)
@@ -221,7 +235,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
         gt_masks_uncertain.append(gt_masks_per_image_uncertain)
 
     if len(gt_masks) == 0:
-        return pred_mask_logits.sum() * 0 + pred_mask_logits_uncertain.sum() * 0 + x_p2_s.sum() * 0
+        return pred_mask_logits.sum() * 0 + pred_mask_logits_uncertain.sum() * 0 + x_p2_s.sum() * 0 + pred_boundary_logits.sum() * 0
 
     gt_masks = cat(gt_masks, dim=0)
     gt_masks_s = cat(gt_masks_s, dim=0)
@@ -229,6 +243,11 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     gt_masks_ll = cat(gt_masks_ll, dim=0)
     gt_masks_uncertain = cat(gt_masks_uncertain, dim=0)
     gt_semantic_mask_s = cat(gt_semantic_mask_s, dim=0)
+    gt_boundary = cat(gt_boundary, dim=0)
+
+    pred_boundary_logits = pred_boundary_logits[:, 0]
+    bound_loss = L.JointLoss(L.BceLoss(), L.BceLoss())(
+        pred_boundary_logits.unsqueeze(1), gt_boundary.to(dtype=torch.float32))
 
     semantic_loss = F.binary_cross_entropy_with_logits(x_p2_s, gt_semantic_mask_s, reduction="mean") * 0.25
     
@@ -454,7 +473,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
             encoded_feats).squeeze(1).squeeze(-1)
         
         mask_loss_refine = F.l1_loss(selected_pred, gt_masks_s)
-        return mask_loss, mask_loss_uncertain, mask_loss_refine, semantic_loss
+        return mask_loss, mask_loss_uncertain, mask_loss_refine, semantic_loss, bound_loss
 
     select_box_feats = torch.stack(uncertain_feats_box_list)
     select_box_feats_pos = torch.stack(uncertain_feats_box_list_pos)
@@ -479,7 +498,7 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
         encoded_feats).squeeze(1).squeeze(-1)
     mask_loss_refine = F.l1_loss(selected_pred, select_gt_boxs_labels)
 
-    return mask_loss, mask_loss_uncertain, mask_loss_refine, semantic_loss
+    return mask_loss, mask_loss_uncertain, mask_loss_refine, semantic_loss, bound_loss
 
 class BaseMaskRCNNHead(nn.Module):
     """
@@ -517,12 +536,12 @@ class BaseMaskRCNNHead(nn.Module):
         Returns:
             A dict of losses in training. The predicted "instances" in inference.
         """
-        x, x_uncertain, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, encoder = self.layers(x)
+        x, x_uncertain, x_bo, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, encoder = self.layers(x)
 
         if self.training:
-            loss_masks, loss_mask_uncertains, loss_mask_refine, loss_semantic = mask_rcnn_loss(
-                x, x_uncertain, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, encoder, instances, self.vis_period)
-            return {"loss_mask": loss_masks * self.loss_weight, "loss_mask_uncertain": loss_mask_uncertains * self.loss_weight * 0.5, "loss_mask_refine": loss_mask_refine, "loss_semantic": loss_semantic}
+            loss_masks, loss_mask_uncertains, loss_mask_refine, loss_semantic, loss_bound = mask_rcnn_loss(
+                x, x_uncertain, x_bo, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, encoder, instances, self.vis_period)
+            return {"loss_mask": loss_masks * self.loss_weight, "loss_mask_uncertain": loss_mask_uncertains * self.loss_weight * 0.5, "loss_mask_refine": loss_mask_refine, "loss_semantic": loss_semantic, "loss_bound": loss_bound * 0.5}
         else:
             LIMIT = 10
             pred_mask_logits_uncertain = x_uncertain[:, 0][:LIMIT]
@@ -741,12 +760,18 @@ class MaskRCNNConvUpsampleHead(BaseMaskRCNNHead):
         self.deconv = ConvTranspose2d(
             cur_channels, conv_dims[-1], kernel_size=2, stride=2, padding=0
         )
+        self.deconv_bo = ConvTranspose2d(
+            cur_channels, conv_dims[-1], kernel_size=2, stride=2, padding=0
+        )
+
         self.add_module("deconv_relu", nn.ReLU())
         cur_channels = conv_dims[-1]
 
         self.predictor = Conv2d(cur_channels, num_classes,
                                 kernel_size=1, stride=1, padding=0)
-        
+        self.predictor_bo = Conv2d(cur_channels, 1,
+                                kernel_size=1, stride=1, padding=0)
+
         encoder_layer = TransformerEncoderLayer(d_model=256, nhead=4)
         # used for the b4 and b4 correct; nice_light
         self.encoder = TransformerEncoder(encoder_layer, num_layers=3)
@@ -781,14 +806,16 @@ class MaskRCNNConvUpsampleHead(BaseMaskRCNNHead):
 
         self.sig = nn.Sigmoid()
 
-        for layer in self.conv_norm_relus + [self.deconv] + self.conv_norm_relus_uncertain + [self.deconv_uncertain]:
+        for layer in self.conv_norm_relus + [self.deconv] + [self.deconv_bo] + self.conv_norm_relus_uncertain + [self.deconv_uncertain]:
             weight_init.c2_msra_fill(layer)
         # use normal distribution initialization for mask prediction layer
         nn.init.normal_(self.predictor.weight, std=0.001)
         nn.init.normal_(self.predictor_uncertain.weight, std=0.001)
+        nn.init.normal_(self.predictor_bo.weight, std=0.001)
         if self.predictor.bias is not None:
             nn.init.constant_(self.predictor.bias, 0)
             nn.init.constant_(self.predictor_uncertain.bias, 0)
+            nn.init.constant_(self.predictor_bo.bias, 0)
 
     @classmethod
     def from_config(cls, cfg, input_shape):
@@ -825,16 +852,21 @@ class MaskRCNNConvUpsampleHead(BaseMaskRCNNHead):
         for cnt, layer in enumerate(self.conv_norm_relus_uncertain):
             x_uncertain = layer(x_uncertain)
 
+        x_bo = x.clone()
+
         x = F.relu(self.deconv(x))
         mask = self.predictor(x)
 
         x_uncertain = self.deconv_uncertain(x_uncertain)
         mask_uncertain = self.sig(self.predictor_uncertain(x_uncertain))
 
+        bound = None
         if self.training:
             x_p2_s = self.predictor_semantic_s(x_p2_s) # additional
+            x_bo = F.relu(self.deconv_bo(x_bo))
+            bound = self.predictor_bo(x_bo)
 
-        return mask, mask_uncertain, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, self.encoder
+        return mask, mask_uncertain, bound, x_hr, x_hr_l, x_hr_ll, x_c, x_p2_s, self.encoder
 
 
 def build_mask_head(cfg, input_shape):

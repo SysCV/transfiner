@@ -1,9 +1,0 @@
-_BASE_: "../Base-RCNN-FPN-4gpu.yaml"
-MODEL:
-  WEIGHTS: "./init_weights/model_final_a3ec72.pkl"
-  MASK_ON: True
-  RESNETS:
-    DEPTH: 101
-SOLVER:
-  STEPS: (210000, 250000)
-  MAX_ITER: 270000

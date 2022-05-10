@@ -31,7 +31,8 @@ MODEL:
     POOLER_RESOLUTION: 14
 DATASETS:
   TRAIN: ("coco_2017_train",)
-  TEST: ("coco_2017_val",)
+  #TEST: ("coco_2017_val",)
+  TEST: ("coco_2017_test-dev",)
 SOLVER:
   IMS_PER_BATCH: 16 #16
   BASE_LR: 0.02
