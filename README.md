@@ -57,7 +57,7 @@ Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
 Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
 Res-R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
-Res-R101-FPN | Transfiner (3x, CVPR'22) | 40.7, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
+Res-R101-FPN | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
 **Res-R101-FPN-DCN** | **Transfiner (CVPR'22, 3x)** | **42.2**, Pretrained Model | 
 
 Introduction
@@ -123,6 +123,8 @@ Prepare for [coco2017](http://cocodataset.org/#home) dataset and [Cityscapes](ht
 
 Multi-GPU Training and Evaluation on Validation set
 ---------------
+Refer to our [scripts folder](https://github.com/SysCV/transfiner/tree/main/scripts) for more traning, testing and visualization commands:
+ 
 ```
 bash scripts/train_transfiner_3x_101.sh
 ```
@@ -133,7 +135,7 @@ bash scripts/train_transfiner_1x_50.sh
 
 Pretrained Models
 ---------------
-Download the pretrained model from the above result table: 
+Download the pretrained models from the above result table: 
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
