@@ -124,11 +124,11 @@ Prepare for [coco2017](http://cocodataset.org/#home) dataset and [Cityscapes](ht
 Multi-GPU Training and Evaluation on Validation set
 ---------------
 ```
-bash scripts/train_4gpu_transfiner_3x_101.sh
+bash scripts/train_transfiner_3x_101.sh
 ```
 Or
 ```
-bash scripts/train_4gpu.sh
+bash scripts/train_transfiner_1x_50.sh
 ```
 
 Pretrained Models
@@ -139,18 +139,10 @@ Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_con
   #And put the downloaded pretrained models in this directory.
 ```
 
-<!-- Initial Weights
----------------
-Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_connect_ust_hk/Evb1jo2xDKxJoGSJxJ0aej4B8dfRsR9F7KByvlyF4SOL_A?e=hT81c9)
-```
-  mkdir init_weights
-  #And put the downloaded init models weights in this directory.
-``` -->
-
 Testing on Test-dev
 ---------------
 ```
-bash scripts/test_3x_transfiner_101_deform.sh
+bash scripts/test_3x_transfiner_101.sh
 ```
 
 Visualization
