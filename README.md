@@ -133,7 +133,7 @@ bash scripts/train_transfiner_1x_50.sh
 
 Pretrained Models
 ---------------
-Download: [link](https://hkustconnect-my.sharepoint.com/:f:/g/personal/lkeab_connect_ust_hk/EqYIfZDfFDhIrTcTpNP79ccBoZ6L1FxAXqQxtGiH4Q0Z0A?e=9buMwd)
+Download the pretrained model from the above result table: 
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
