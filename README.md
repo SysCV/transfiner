@@ -135,7 +135,7 @@ bash scripts/train_transfiner_1x_50.sh
 
 Pretrained Models
 ---------------
-Download the pretrained models from the above result table: 
+Download the pretrained models from the above [result table](https://github.com/SysCV/transfiner#results-on-coco-test-dev): 
 ```
   mkdir pretrained_models
   #And put the downloaded pretrained models in this directory.
