@@ -9,6 +9,6 @@ ID=159
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python3 tools/train_net.py --num-gpus 8 --dist-url tcp://0.0.0.0:12345 \
 	--config-file configs/transfiner/mask_rcnn_R_50_FPN_3x.yaml \
-        --eval-only MODEL.WEIGHTS ./pretrained_model/output_3x_r50_transfiner.pth
+        --eval-only MODEL.WEIGHTS ./pretrained_model/output_3x_transfiner_r50.pth
 
 

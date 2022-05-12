@@ -561,9 +561,9 @@ class BaseMaskRCNNHead(nn.Module):
             mask_uncertain_bool_lg = (pred_mask_logits_uncertain_lg.detach() >= 0.125).squeeze(1) 
             mask_uncertain_bool_lg_l = (pred_mask_logits_uncertain_lg_l.detach() >= 0.8).squeeze(1).cpu() 
 
-            # if mask_uncertain_bool_lg_l.shape[0] > 0:
-            #     kernel = torch.ones(3, 3)
-            #     mask_uncertain_bool_lg_l = dilation(mask_uncertain_bool_lg_l.unsqueeze(1).float(), kernel).squeeze(1).bool()
+            if mask_uncertain_bool_lg_l.shape[0] > 0 and self.vis_period == 100:
+                kernel = torch.ones(3, 3)
+                mask_uncertain_bool_lg_l = dilation(mask_uncertain_bool_lg_l.unsqueeze(1).float(), kernel).squeeze(1).bool()
        
             pred_mask_logits_bool_ori = F.interpolate(
                 mask_probs_pred.float(), (112, 112), mode='bilinear')
