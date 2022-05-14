@@ -48,7 +48,7 @@ Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
 Res-R50-FPN | Transfiner (1x, CVPR'22)  | 37.0,  [Pretrained Model](https://drive.google.com/file/d/1IHNEs7PLGaw2gftHzMIOAxFzlYVPMc26/view?usp=sharing)|
 Res-R50-FPN | [BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 38.4 | 
 Res-R50-FPN | Transfiner (3x, CVPR'22)  | 39.2,  [Pretrained Model](https://drive.google.com/file/d/1EA9pMdUK6Ad9QsjaZz0g5jqbo_JkqtME/view?usp=sharing)|
-**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5, Pretrained Model |
+**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
