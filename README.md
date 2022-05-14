@@ -149,7 +149,6 @@ bash scripts/test_3x_transfiner_101.sh
 
 Visualization
 ---------------
-(Uncomment L545-547 of [roi_head.py](https://github.com/SysCV/transfiner/blob/main/detectron2/modeling/roi_heads/mask_head.py#L545) for better visualization.)
 ```
 bash scripts/visual.sh
 ```
