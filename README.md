@@ -44,11 +44,11 @@ Results on COCO test-dev
 Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
 Res-R50-FPN | PANet (CVPR'18) | 36.6 |
 Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
-Res-R50-FPN | PointRend (1x CVPR'20) | 36.3 |
+Res-R50-FPN | PointRend (1x, CVPR'20) | 36.3 |
 Res-R50-FPN | Transfiner (1x, CVPR'22)  | 37.0,  [Pretrained Model](https://drive.google.com/file/d/1IHNEs7PLGaw2gftHzMIOAxFzlYVPMc26/view?usp=sharing)|
 Res-R50-FPN | [BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 38.4 | 
 Res-R50-FPN | Transfiner (3x, CVPR'22)  | 39.2,  [Pretrained Model](https://drive.google.com/file/d/1EA9pMdUK6Ad9QsjaZz0g5jqbo_JkqtME/view?usp=sharing)|
-**Res-R50-FPN-DCN** | **Transfiner (CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
+**Res-R50-FPN-DCN** | **Transfiner (3x, CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
@@ -58,7 +58,7 @@ Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 |
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
 Res-R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 Res-R101-FPN | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
-**Res-R101-FPN-DCN** | **Transfiner (CVPR'22, 3x)** | **42.2**, Pretrained Model | 
+**Res-R101-FPN-DCN** | **Transfiner (3x, CVPR'22)** | **42.2**, Pretrained Model | 
 
 Introduction
 -----------------
