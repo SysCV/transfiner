@@ -58,7 +58,7 @@ Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 |
 Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
 Res-R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 Res-R101-FPN | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
-**Res-R101-FPN-DCN** | **Transfiner (3x, CVPR'22)** | **42.2**, Pretrained Model | 
+**Res-R101-FPN-DCN** | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
 
 Introduction
 -----------------
