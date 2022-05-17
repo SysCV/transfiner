@@ -41,24 +41,24 @@ Results on COCO test-dev
 
 | Backbone  | Method | mAP(mask) | 
 |----------|--------|-----------|
-Res-R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
-Res-R50-FPN | PANet (CVPR'18) | 36.6 |
-Res-R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
-Res-R50-FPN | PointRend (1x, CVPR'20) | 36.3 |
-[Res-R50-FPN](configs/transfiner/mask_rcnn_R_50_FPN_1x.yaml) | Transfiner (1x, CVPR'22)  | 37.0,  [Pretrained Model](https://drive.google.com/file/d/1IHNEs7PLGaw2gftHzMIOAxFzlYVPMc26/view?usp=sharing)|
+R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
+R50-FPN | PANet (CVPR'18) | 36.6 |
+R50-FPN | MS R-CNN (CVPR'19) | 35.6 |
+R50-FPN | PointRend (1x, CVPR'20) | 36.3 |
+[R50-FPN](configs/transfiner/mask_rcnn_R_50_FPN_1x.yaml) | Transfiner (1x, CVPR'22)  | 37.0,  [Pretrained Model](https://drive.google.com/file/d/1IHNEs7PLGaw2gftHzMIOAxFzlYVPMc26/view?usp=sharing)|
 Res-R50-FPN | [BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 38.4 | 
-[Res-R50-FPN](configs/transfiner/mask_rcnn_R_50_FPN_3x.yaml) | Transfiner (3x, CVPR'22)  | 39.2,  [Pretrained Model](https://drive.google.com/file/d/1EA9pMdUK6Ad9QsjaZz0g5jqbo_JkqtME/view?usp=sharing)|
-[**Res-R50-FPN-DCN**](configs/transfiner/mask_rcnn_R_50_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
+[R50-FPN](configs/transfiner/mask_rcnn_R_50_FPN_3x.yaml) | Transfiner (3x, CVPR'22)  | 39.2,  [Pretrained Model](https://drive.google.com/file/d/1EA9pMdUK6Ad9QsjaZz0g5jqbo_JkqtME/view?usp=sharing)|
+[**R50-FPN-DCN**](configs/transfiner/mask_rcnn_R_50_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
 
 | Backbone  | Method | mAP(mask) |
 |----------|--------|-----------|
-Res-R101-FPN | Mask R-CNN (ICCV'17) | 36.1 | 
-Res-R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
-Res-R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
-Res-R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
-Res-R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
-[Res-R101-FPN](configs/transfiner/mask_rcnn_R_101_FPN_3x.yaml) | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
-[**Res-R101-FPN-DCN**](configs/transfiner/mask_rcnn_R_101_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
+R101-FPN | Mask R-CNN (ICCV'17) | 36.1 | 
+R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
+R101-FPN | BMask R-CNN (ECCV'20) | 37.7 | 
+R101-FPN | SOLOv2 (NeurIPS'20) | 39.7 | 
+R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
+[R101-FPN](configs/transfiner/mask_rcnn_R_101_FPN_3x.yaml) | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
+[**R101-FPN-DCN**](configs/transfiner/mask_rcnn_R_101_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
 
 Introduction
 -----------------
