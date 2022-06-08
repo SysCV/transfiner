@@ -39,7 +39,7 @@ Results on COCO test-dev
 ------------
 (Check Table 9 of the paper for full results, all methods are trained on COCO train2017. This is a reimplementation. Thus, the numbers might be slightly different from the ones reported in our original paper.)
 
-| Backbone  | Method | mAP(mask) | 
+| Backbone(configs)  | Method | mAP(mask) | 
 |----------|--------|-----------|
 R50-FPN | Mask R-CNN (ICCV'17) | 34.2 |
 R50-FPN | PANet (CVPR'18) | 36.6 |
@@ -50,7 +50,7 @@ Res-R50-FPN | [BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 38.4 |
 [R50-FPN](configs/transfiner/mask_rcnn_R_50_FPN_3x.yaml) | Transfiner (3x, CVPR'22)  | 39.2,  [Pretrained Model](https://drive.google.com/file/d/1EA9pMdUK6Ad9QsjaZz0g5jqbo_JkqtME/view?usp=sharing)|
 [**R50-FPN-DCN**](configs/transfiner/mask_rcnn_R_50_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)**  | 40.5, [Pretrained Model](https://drive.google.com/file/d/1N0C_ZhES7iu8qEPG2mrdxf8rWteemxQD/view?usp=sharing) |
 
-| Backbone  | Method | mAP(mask) |
+| Backbone(configs)  | Method | mAP(mask) |
 |----------|--------|-----------|
 R101-FPN | Mask R-CNN (ICCV'17) | 36.1 | 
 R101-FPN | MS R-CNN (CVPR'19) | 38.3 |
