@@ -60,6 +60,12 @@ R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 [R101-FPN](configs/transfiner/mask_rcnn_R_101_FPN_3x.yaml) | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
 [**R101-FPN-DCN**](configs/transfiner/mask_rcnn_R_101_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
 
+**To be released**:
+| Backbone(configs)  | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
+|----------|--------|-----------|-----------|-----------|-----------|
+Swin-B | 3X | [480-800] | Transfiner | 49.8| 45.5 |
+
+
 Introduction
 -----------------
 Two-stage and query-based instance segmentation methods have achieved remarkable results. However, their segmented masks are still very coarse. In this paper, we present Mask Transfiner for high-quality and efficient instance segmentation. Instead of operating on regular dense tensors, our Mask Transfiner decomposes and represents the image regions as a quadtree. Our transformer-based approach only processes detected error-prone tree nodes and self-corrects their errors in parallel. While these sparse pixels only constitute a small proportion of the total number, they are critical to the final mask quality. This allows Mask Transfiner to predict highly accurate instance masks, at a low computational cost. Extensive experiments demonstrate that Mask Transfiner outperforms current instance segmentation methods on three popular benchmarks, significantly improving both two-stage and query-based frameworks by a large margin of +3.0 mask AP on COCO and BDD100K, and +6.6 boundary AP on Cityscapes. 
