@@ -63,6 +63,7 @@ R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 **To be released**:
 | Backbone(configs)  | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
 |----------|--------|-----------|-----------|-----------|-----------|
+Swin-T | 3X | [480-800] | Transfiner | 46.9| 43.5 |
 Swin-B | 3X | [480-800] | Transfiner | 49.8| 45.5 |
 
 
