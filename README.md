@@ -61,10 +61,10 @@ R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 [**R101-FPN-DCN**](configs/transfiner/mask_rcnn_R_101_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
 
 **To be released**:
-| Backbone(configs)  | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
-|----------|--------|-----------|-----------|-----------|-----------|
-Swin-T | 3X | [480-800] | Transfiner | 46.9| 43.5 |
-Swin-B | 3X | [480-800] | Transfiner | 49.8| 45.5 |
+| Backbone(configs)  | Pretrain | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
+|----------|-----------|--------|-----------|-----------|-----------|-----------|
+Swin-T | ImageNet-1k | 3X | [480-800] | Transfiner | 46.9| 43.5 |
+Swin-B | ImageNet-22k | 3X | [480-800] | Transfiner | 49.8| 45.5 |
 
 
 Introduction
