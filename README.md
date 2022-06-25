@@ -60,11 +60,10 @@ R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 [R101-FPN](configs/transfiner/mask_rcnn_R_101_FPN_3x.yaml) | Transfiner (3x, CVPR'22) | 40.5, [Pretrained Model](https://drive.google.com/file/d/1Jn27jTpFFWjuX22xvR1upP99nOXfZ1nk/view?usp=sharing) | 
 [**R101-FPN-DCN**](configs/transfiner/mask_rcnn_R_101_FPN_3x_deform.yaml) | **Transfiner (3x, CVPR'22)** | **42.2**, [Pretrained Model](https://drive.google.com/file/d/1TpVQksuaXlhioD3WqWppX84MB-l_Eb7-/view?usp=sharing) | 
 
-**To be released**:
 | Backbone(configs)  | Pretrain | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
 |----------|-----------|--------|-----------|-----------|-----------|-----------|
-Swin-T | ImageNet-1k | 3X | [480-800] | Transfiner | 46.9| 43.5 |
-Swin-B | ImageNet-22k | 3X | [480-800] | Transfiner | 49.8| 45.5 |
+[Swin-T](configs/transfiner/mask_rcnn_swint_FPN_3x.yaml) | ImageNet-1k | 3X | [480-800] | Transfiner | 46.9| 43.5, [Pretrained Model](https://drive.google.com/file/d/1ezIxmwdMl_cC7gCPEqtLL6zlSYd3R9wA/view?usp=sharing) |
+[Swin-B](configs/transfiner/mask_rcnn_swinb_FPN_3x.yaml) | ImageNet-22k | 3X | [480-800] | Transfiner | 49.8| 45.5,[Pretrained Model](https://drive.google.com/file/d/1XkEwTMiyADYfvniIrBIDX7RPTSLI4fys/view?usp=sharing) |
 
 
 Introduction
