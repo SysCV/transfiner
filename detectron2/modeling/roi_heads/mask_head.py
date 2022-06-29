@@ -13,6 +13,7 @@ from detectron2.layers import get_instances_contour_interior
 from pytorch_toolbelt import losses as L
 
 from kornia.morphology import dilation
+from kornia.filters import blur_pool2d
 
 from detectron2.layers.roi_align import ROIAlign
 from detectron2.config import configurable
@@ -682,7 +683,6 @@ class BaseMaskRCNNHead(nn.Module):
 
             if select_num_hr > 0: 
                 pred_mask_logits_bool = F.interpolate(pred_mask_logits_bool, (56, 56), mode='bilinear', align_corners=True)
-
                 selected_pred_list_cat_hr = torch.cat(selected_pred_list_hr)
                 pred_mask_logits_bool.squeeze(1)[uncertain_pos_lg] = selected_pred_list_cat_hr
 
@@ -694,6 +694,9 @@ class BaseMaskRCNNHead(nn.Module):
             if select_num_hr_l > 0: 
                 selected_pred_list_cat_hr_l = torch.cat(selected_pred_list_hr_l)
                 pred_mask_logits_bool.squeeze(1)[uncertain_pos_lg_l] = selected_pred_list_cat_hr_l
+            
+            if pred_mask_logits_bool.shape[0] > 0 and self.vis_period == 100:
+                pred_mask_logits_bool = blur_pool2d(pred_mask_logits_bool, 5, stride=1)
 
             pred_mask_logits_bool_ori[:LIMIT] = pred_mask_logits_bool
             mask_probs_pred = pred_mask_logits_bool_ori.split(num_boxes_per_image, dim=0)
