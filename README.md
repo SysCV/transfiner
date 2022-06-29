@@ -158,6 +158,10 @@ Visualization
 ```
 bash scripts/visual.sh
 ```
+for swin-based model:
+```
+bash scripts/visual_swinb.sh
+```
 
 Citation
 ---------------
