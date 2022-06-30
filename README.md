@@ -62,8 +62,8 @@ R101-FPN |[BCNet (CVPR'21)](https://github.com/lkeab/BCNet) | 39.8|
 
 | Backbone(configs)  | Pretrain | Lr Schd| Size | Method | mAP(box) on Val2017| mAP(mask) on Val2017|
 |----------|-----------|--------|-----------|-----------|-----------|-----------|
-[Swin-T](configs/transfiner/mask_rcnn_swint_FPN_3x.yaml),[init_weight(d2 format)](https://drive.google.com/file/d/1qvNwe4Ax79OqHQnJp5elFuVYsxUiYviJ/view?usp=sharing) | ImageNet-1k | 3X | [480-800] | Transfiner | 46.9| 43.5, [Pretrained Model](https://drive.google.com/file/d/1ezIxmwdMl_cC7gCPEqtLL6zlSYd3R9wA/view?usp=sharing) |
-[Swin-B](configs/transfiner/mask_rcnn_swinb_FPN_3x.yaml),[init_weight(d2 format)](https://drive.google.com/file/d/12IGYQOa-nlpFhTbgdifbMnSkcke3lmCO/view?usp=sharing) | ImageNet-22k | 3X | [480-800] | Transfiner | 49.8| 45.5,[Pretrained Model](https://drive.google.com/file/d/1XkEwTMiyADYfvniIrBIDX7RPTSLI4fys/view?usp=sharing) |
+[Swin-T](configs/transfiner/mask_rcnn_swint_FPN_3x.yaml),[init_weight of imagenet (d2 format)](https://drive.google.com/file/d/1qvNwe4Ax79OqHQnJp5elFuVYsxUiYviJ/view?usp=sharing) | ImageNet-1k | 3X | [480-800] | Transfiner | 46.9| 43.5, [Pretrained Model](https://drive.google.com/file/d/1ezIxmwdMl_cC7gCPEqtLL6zlSYd3R9wA/view?usp=sharing) |
+[Swin-B](configs/transfiner/mask_rcnn_swinb_FPN_3x.yaml),[init_weight of imagenet (d2 format)](https://drive.google.com/file/d/12IGYQOa-nlpFhTbgdifbMnSkcke3lmCO/view?usp=sharing) | ImageNet-22k | 3X | [480-800] | Transfiner | 49.8| **45.5**,[Pretrained Model](https://drive.google.com/file/d/1XkEwTMiyADYfvniIrBIDX7RPTSLI4fys/view?usp=sharing) |
 
 
 Introduction
