@@ -696,7 +696,7 @@ class BaseMaskRCNNHead(nn.Module):
                 pred_mask_logits_bool.squeeze(1)[uncertain_pos_lg_l] = selected_pred_list_cat_hr_l
             
             if pred_mask_logits_bool.shape[0] > 0 and self.vis_period == 100:
-                pred_mask_logits_bool = blur_pool2d(pred_mask_logits_bool, 5, stride=1)
+                pred_mask_logits_bool = blur_pool2d(pred_mask_logits_bool, 7, stride=1)
 
             pred_mask_logits_bool_ori[:LIMIT] = pred_mask_logits_bool
             mask_probs_pred = pred_mask_logits_bool_ori.split(num_boxes_per_image, dim=0)
