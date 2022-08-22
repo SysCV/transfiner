@@ -95,14 +95,9 @@ def get_incoherent_mask(input_masks, sfact):
     mask = input_masks.float()
     w = input_masks.shape[-1]
     h = input_masks.shape[-2]
-    # print('mask 1 shape:', input_masks)
     mask_small = F.interpolate(mask, (h//sfact, w//sfact), mode='bilinear')
-    # print('mask small shape:', mask_small.shape)
     mask_recover = F.interpolate(mask_small, (h, w), mode='bilinear')
-    # print('mask recover shape:', mask_recover.shape)
-    # # print('mask orii shape:', mask.shape)
-    mask_residue = (mask - mask_recover)
-    # print('mask residue shape:', mask_residue.shape)
+    mask_residue = (mask - mask_recover).abs()
     mask_uncertain = F.interpolate(
         mask_residue, (h//sfact, w//sfact), mode='bilinear')
     mask_uncertain[mask_uncertain >= 0.01] = 1.
@@ -200,7 +195,8 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
         sfact = 2
         mask_uncertain = get_incoherent_mask(
             instances_per_image.gt_masks_bit.tensor.unsqueeze(1), sfact)
-        
+        #print('mask uncertain max:', mask_uncertain.max()) 
+        #print('mask uncertain min:', mask_uncertain.min()) 
         gt_masks_per_image = instances_per_image.gt_masks.crop_and_resize(
             instances_per_image.proposal_boxes.tensor, mask_side_len
         ).to(device=pred_mask_logits.device)
@@ -298,7 +294,9 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     
     mask_loss = F.binary_cross_entropy_with_logits(
         pred_mask_logits, gt_masks, reduction="mean")
-
+    #print('gt_masks_uncertain shape:', gt_masks_uncertain.shape)
+    #print('gt_masks_uncertain max:', gt_masks_uncertain.max())
+    #print('gt_masks_uncertain min:', gt_masks_uncertain.min())
     mask_loss_uncertain = dice_loss_my(
         pred_mask_logits_uncertain, gt_masks_uncertain, pred_mask_logits_uncertain.shape[0]) + F.binary_cross_entropy(pred_mask_logits_uncertain, gt_masks_uncertain, reduction="mean")
 
