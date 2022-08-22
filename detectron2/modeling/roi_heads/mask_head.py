@@ -195,8 +195,6 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
         sfact = 2
         mask_uncertain = get_incoherent_mask(
             instances_per_image.gt_masks_bit.tensor.unsqueeze(1), sfact)
-        #print('mask uncertain max:', mask_uncertain.max()) 
-        #print('mask uncertain min:', mask_uncertain.min()) 
         gt_masks_per_image = instances_per_image.gt_masks.crop_and_resize(
             instances_per_image.proposal_boxes.tensor, mask_side_len
         ).to(device=pred_mask_logits.device)
@@ -294,9 +292,6 @@ def mask_rcnn_loss(pred_mask_logits: torch.Tensor, pred_mask_logits_uncertain: t
     
     mask_loss = F.binary_cross_entropy_with_logits(
         pred_mask_logits, gt_masks, reduction="mean")
-    #print('gt_masks_uncertain shape:', gt_masks_uncertain.shape)
-    #print('gt_masks_uncertain max:', gt_masks_uncertain.max())
-    #print('gt_masks_uncertain min:', gt_masks_uncertain.min())
     mask_loss_uncertain = dice_loss_my(
         pred_mask_logits_uncertain, gt_masks_uncertain, pred_mask_logits_uncertain.shape[0]) + F.binary_cross_entropy(pred_mask_logits_uncertain, gt_masks_uncertain, reduction="mean")
 
@@ -776,8 +771,6 @@ class MaskRCNNConvUpsampleHead(BaseMaskRCNNHead):
         encoder_layer = TransformerEncoderLayer(d_model=256, nhead=4)
         # used for the b4 and b4 correct; nice_light
         self.encoder = TransformerEncoder(encoder_layer, num_layers=3)
-        # conv_dim1 = 256
-        # cur_channels1 = cur_channels
         for k, conv_dim in enumerate(conv_dims[:-1]):
             
             if k == 3:
