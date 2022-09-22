@@ -7,6 +7,10 @@ This is the official pytorch implementation of [Transfiner](https://arxiv.org/ab
 > Lei Ke, Martin Danelljan, Xia Li, Yu-Wing Tai, Chi-Keung Tang, Fisher Yu  
 > CVPR, 2022
 
+Updates
+-----------------
+:fire::fire: We released the [Video Mask Transfiner and HQ-YTVIS benchmark](https://github.com/SysCV/vmt) in ECCV'2022.
+
 Highlights
 -----------------
 - **Transfiner:** High-quality instance segmentation with state-of-the-art performance and extreme details.
@@ -181,7 +185,18 @@ If you find Mask Transfiner useful in your research or refer to the provided bas
     booktitle = {CVPR},
     year = {2022}
 }  
+
 ```
+If you are interested in [Video Mask Transfiner and High-Quality Video Instance Segmentation data](https://github.com/SysCV/vmt):
+```
+@inproceedings{vmt,
+    title = {Video Mask Transfiner for High-Quality Video Instance Segmentation},
+    author = {Ke, Lei and Ding, Henghui and Danelljan, Martin and Tai, Yu-Wing and Tang, Chi-Keung and Yu, Fisher},
+    booktitle = {European Conference on Computer Vision (ECCV)},
+    year = {2022}
+}
+```
+
 Related Links
 ---------------
 Related NeurIPS 2021 Work on multiple object tracking & segmentation: [PCAN](https://github.com/SysCV/pcan)
